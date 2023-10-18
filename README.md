@@ -1,7 +1,7 @@
 ## E-Diary
 ### Name: Nandan Bhowmick
 ### Roll: 1436
-### Aubmitted to: Abdus Satter
+### Submitted to: Abdus Satter
 ### Languages or Tools to be used: Java, Eclipse, Github
 
 ### Project Description
