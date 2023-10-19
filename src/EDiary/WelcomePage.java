@@ -47,7 +47,8 @@ public class WelcomePage implements ActionListener{
 			System.out.println("Hello");
 		}
 		else {
-			
+			frame.dispose();
+			new SignUp();
 		}
 		
 	}
