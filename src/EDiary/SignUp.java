@@ -43,11 +43,17 @@ public class SignUp implements ActionListener{
 		title.setFont(new Font(null,Font.BOLD,35));
 		
 		fNameLabel.setBounds(180,82,370,30);
+		fNameLabel.setFont(myFont);
 		lNameLabel.setBounds(180,142,370,30);
+		lNameLabel.setFont(myFont);
 		dobLabel.setBounds(180,202,370,30);
+		dobLabel.setFont(myFont);
 		uNameLabel.setBounds(180,262,370,30);
+		uNameLabel.setFont(myFont);
 		passLabel.setBounds(180,322,370,30);
+		passLabel.setFont(myFont);
 		cPassLabel.setBounds(180,382,370,30);
+		cPassLabel.setFont(myFont);
 		
 		firstName.setBounds(30, 70, 150, 50);
 		firstName.setFont(myFont);

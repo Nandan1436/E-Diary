@@ -44,7 +44,8 @@ public class WelcomePage implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==login) {
-			System.out.println("Hello");
+			frame.dispose();
+			new Login();
 		}
 		else {
 			frame.dispose();
