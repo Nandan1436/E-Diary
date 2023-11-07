@@ -4,15 +4,15 @@ public class Account {
 	private String firstName;
 	private String lastName;
 	private String dateOfBirth;
-	private String userName;
+	private String email;
 	private String password;
 	
-	public Account(String firstName, String lastName, String dateOfBirth, String userName, String password) {
+	public Account(String firstName, String lastName, String dateOfBirth, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
-		this.userName = userName;
+		this.email = email;
 		this.password = password;
 	}
 
@@ -28,13 +28,14 @@ public class Account {
 		return dateOfBirth;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getEmail() {
+		return email;
 	}
 
 	public String getPassword() {
 		return password;
 	}
+	
 	
 	
 	
