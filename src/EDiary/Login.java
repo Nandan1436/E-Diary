@@ -2,7 +2,9 @@ package EDiary;
 
 import java.awt.event.ActionEvent;
 import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.awt.event.ActionListener;
@@ -17,6 +19,7 @@ public class Login implements ActionListener {
 	JTextField password = new JTextField();
 	JLabel emailLabel = new JLabel("Email: ");
 	JLabel passLabel = new JLabel("Password: ");
+	JLabel checkLogin = new JLabel();
 	JLabel title = new JLabel("Log In");
 	JButton login = new JButton("Log in");
 
@@ -34,6 +37,8 @@ public class Login implements ActionListener {
 		emailLabel.setFont(myFont);
 		passLabel.setBounds(30, 130, 100, 50);
 		passLabel.setFont(myFont);
+		checkLogin.setBounds(100,260,200,100);
+		checkLogin.setFont(new Font(null,Font.BOLD,15));
 
 		email.setBounds(130, 82, 230, 30);
 		email.setFont(myFont);
@@ -43,6 +48,7 @@ public class Login implements ActionListener {
 		login.setBounds(150, 202, 100, 50);
 		login.setFont(myFont);
 		login.addActionListener(this);
+		login.setFocusable(false);
 
 		frame.add(login);
 		frame.add(title);
@@ -50,48 +56,45 @@ public class Login implements ActionListener {
 		frame.add(password);
 		frame.add(emailLabel);
 		frame.add(passLabel);
+		frame.add(checkLogin);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ObjectInputStream input=null;
-
+		Scanner input = null;
 		try {
-			input = new ObjectInputStream(new FileInputStream("UserList.txt"));
+			input = new Scanner(new File("UserList.txt"));
 		} 
-		catch (IOException ioException) {
-			System.err.println("Error opening file.");
+		catch (FileNotFoundException e1) {
+			System.err.printf("Error opening file");
+			System.exit(1);
 		}
-		Account record;
-		try {
-			while (input!=null) {
-				record = (Account) input.readObject();
-				if(record.getEmail().equals(email.getText()) || record.getPassword().equals(password.getText())) {
-					
-				}
-			}
-			System.out.println("Ok");
-		} 
-		catch (EOFException endOfFileException) {
-			return;
-		} 
-		catch (ClassNotFoundException classNotFoundException) {
-			System.err.println("Unable to create object.");
-		} 
-		catch (IOException ioException) {
-			System.err.println("Error during read from file.");
-		}
+		Account record = new Account();
 		try
 		{
-			if (input != null)
-				input.close();
-		} 
-		catch (IOException ioException) {
-			System.err.println("Error closing file.");
-			System.exit(1);
-		} 
+			while(input.hasNext())
+			{
+				record.setFirstName(input.next());
+				record.setLastName(input.next());
+				record.setDateOfBirth(input.next());
+				record.setEmail(input.next());
+				record.setPassword(input.next());
+				
+				if(record.getEmail().equals(email.getText()) && record.getPassword().equals(password.getText())) {
+					checkLogin.setText("Success");
+					return;
+				}
+			}
+			checkLogin.setForeground(Color.red);
+			checkLogin.setText("Wront email or Password");
+		}
+		catch(NoSuchElementException elementException) {
+			System.err.println("File improperly formed.");
+		}
+		
+		
 
 	}
 
