@@ -88,12 +88,13 @@ public class Login implements ActionListener {
 				}
 			}
 			checkLogin.setForeground(Color.red);
-			checkLogin.setText("Wront email or Password");
+			checkLogin.setText("Wrong email or Password");
 		}
 		catch(NoSuchElementException elementException) {
 			System.err.println("File improperly formed.");
 		}
 		
+		input.close();
 		
 
 	}
