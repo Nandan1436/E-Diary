@@ -83,7 +83,8 @@ public class Login implements ActionListener {
 				record.setPassword(input.next());
 				
 				if(record.getEmail().equals(email.getText()) && record.getPassword().equals(password.getText())) {
-					checkLogin.setText("Success");
+					frame.dispose();
+					new Menu(record);
 					return;
 				}
 			}

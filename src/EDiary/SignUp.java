@@ -5,6 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class SignUp implements ActionListener{
@@ -111,7 +115,8 @@ public class SignUp implements ActionListener{
 			
 			Scanner input = null;
 			try {
-				input = new Scanner(new File("UserList.txt"));
+				String filePath = "UserList.txt";
+				input = new Scanner(new File(filePath));
 			} 
 			catch (FileNotFoundException e1) {
 				System.err.printf("Error opening file");
@@ -151,6 +156,17 @@ public class SignUp implements ActionListener{
 				System.err.println("Error writing to file.");
 				return;
 			}
+			String filePath = newAcc.getEmail()+".txt";
+
+	        Path path = Paths.get(filePath);
+
+	        try {
+	            Files.createFile(path);
+	            System.out.println("File created: " + path.toAbsolutePath());
+	        } catch (IOException e3) {
+	            System.out.println("File could not be created");
+	            return;
+	        }
 			output.close();
 			frame.dispose();
 			new Login();
